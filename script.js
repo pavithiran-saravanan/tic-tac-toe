@@ -29,6 +29,7 @@
 // Declare a gameboard module (object)
 const gameboard = function(){
     let _currPlayer = 0;
+    let _markerCount = 0;
     let board = [['', '', ''],
                  ['', '', ''],
                  ['', '', ''],]
@@ -38,12 +39,44 @@ const gameboard = function(){
     const print = function(){
         console.log(board);
     };
+    const isOver = function(){
+        if(_markerCount < 9) return false;
+        return true;
+    }
+    const displayResult = ()=>{
+        document.querySelector('.result').classList.remove('hidden');
+        document.querySelector('.turn-main').classList.add('hidden');
+    }
+    const is_three_in_a_row = function(marker){
+        // Check row wise victory
+        if(board[0][0] == marker && board[0][1] == marker && board[0][2] == marker) return true;
+        if(board[1][0] == marker && board[1][1] == marker && board[1][2] == marker) return true;
+        if(board[2][0] == marker && board[2][1] == marker && board[2][2] == marker) return true;
+
+        // Check column wise victory
+        if(board[0][0] == marker && board[1][0] == marker && board[2][0] == marker) return true;
+        if(board[0][1] == marker && board[1][1] == marker && board[2][1] == marker) return true;
+        if(board[0][2] == marker && board[1][2] == marker && board[2][2] == marker) return true;
+
+        // Check diagonal victory
+        if(board[0][0] == marker && board[1][1] == marker && board[2][2] == marker) return true;
+        if(board[2][0] == marker && board[1][1] == marker && board[0][2] == marker) return true;
+        
+        return false;
+    }
+    const announceWinner = function(player){
+        document.querySelector('.result').textContent = `-- ${player.name} Won --`;
+        document.querySelector('.gameboard').style['pointer-events'] = 'none';
+        displayResult();
+    }
 
     const addClickEventListener = function(){
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell)=>{
             cell.addEventListener('click', (e)=>{
                 if(cell.textContent === 'X' || cell.textContent === 'O') return;
+                _markerCount++;
+                const curr = players[_currPlayer];
                 const marker = players[_currPlayer].marker;
                 _currPlayer = _currPlayer === 0 ? 1 : 0;
                 setMarker(cell.getAttribute('data-row'), cell.getAttribute('data-col'), marker);
@@ -55,7 +88,9 @@ const gameboard = function(){
                 document.querySelector('.turn-main').setAttribute('turn', players[_currPlayer].marker);
                 document.querySelector('.symbol').textContent = players[_currPlayer].marker;
 
-                console.log(cell);
+                console.log(curr);
+                if(is_three_in_a_row(curr.marker)) announceWinner(curr);
+                if(isOver()) displayResult();
             });
         });
     };
@@ -90,7 +125,7 @@ const createPlayer = function(name, marker){
     return{name, marker, print};
 };
 // let players = [createPlayer("player1", "❤️"), createPlayer("player2", '💚')];
-let players = [createPlayer("player1", "X"), createPlayer("player2", 'O')];
+let players = [createPlayer("Player One", "X"), createPlayer("Player Two", 'O')];
 
 gameboard.render();
 

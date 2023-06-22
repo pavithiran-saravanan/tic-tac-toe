@@ -2,6 +2,7 @@
     padding: 0px;
     margin: 0px;
     font-family: 'Poppins', sans-serif;
+    letter-spacing: -1px;
     box-sizing: border-box;
 }
 
@@ -27,26 +28,19 @@
     --o: rgb(144, 255, 110);
     --bg-o: rgb(185, 255, 164); */
 
-    --bg-primary: rgb(139, 119, 185);
-    --bg-board: rgb(109, 97, 153);
-    --bg-cell: rgb(174, 143, 223);
-    --title: rgba(0, 0, 0, 0.295);
-    --marker: rgba(0, 0, 0, 0.247);
-    --x: rgb(95, 106, 255);
-    --bg-x: rgb(143, 145, 255);
-    --o: rgb(202, 110, 255);
-    --bg-o: rgb(214, 164, 255);
-
     /*Dark Test*/
     --bg-primary: rgb(46, 36, 68);
     --bg-board:  rgb(76, 60, 112);
     --bg-cell:  rgb(98, 78, 143);
     --x: rgba(95, 106, 255, 0.712);
-    --bg-x: rgba(143, 145, 255, 0.712);
+    --bg-x: rgba(169, 171, 255, 0.712);
     --o: rgba(202, 110, 255, 0.705);
     --bg-o: rgba(214, 164, 255, 0.699);
     --title: rgb(118, 93, 172);
     --marker: rgba(0, 0, 0, 0.479);
+
+    --bg-o-light: rgb(221, 183, 252);
+    --bg-x-light: rgb(197, 191, 255);
 }
 
 body{
@@ -63,13 +57,16 @@ header{
 
 .title{
     color: var(--title);
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: 3rem;
+    /* font-weight: 300; */
     display: flex;
     justify-content: center;
     padding: 40px;
-    padding-bottom: 20px;
-    letter-spacing: -1px;
+    /* letter-spacing: -1px; */
+    font-family: 'Pacifico', cursive;
+
+    text-shadow: 1px 1px 10px rgb(108, 62, 192);
+    color: rgb(195, 162, 255);
 }
 
 .gameboard{
@@ -81,10 +78,12 @@ header{
     width: clamp(320px, 50vw, 450px);
     border-radius: 12px;
     overflow: hidden;
-    padding: 10px;
-    gap: 10px;
+    padding: 6px;
+    gap: 6px;
     background-color: var(--bg-board);
     user-select: none;
+    /* background-color: rgb(195, 162, 255);;
+    box-shadow: 1px 1px 10px rgb(154, 107, 240); */
 }
 
 .cell{
@@ -116,8 +115,7 @@ header{
 }
 
 .turn-main{
-    box-shadow: 1px 1px 10px var(--title);
-    display: flex;
+display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -128,11 +126,12 @@ header{
     height: 50px;
 
     letter-spacing: -.5px;
-    background-color: var(--bg-x); 
+    /* background-color: var(--bg-x);  */
     color: var(--turn);
     padding: 5px 20px;
     border: 3px solid var(--marker);
     color: var(--marker);
+    background-color: rgb(197, 191, 255);
     user-select: none;
 }
 
@@ -142,7 +141,8 @@ header{
 }
 
 .turn-main[turn='O']{
-    background-color: var(--bg-o);
+    /* background-color: var(--bg-o); */
+    background-color: rgb(221, 183, 252);
 }
 
 .turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover{
@@ -177,12 +177,19 @@ header{
     height: 60px;
     gap: 10px;
     border-radius: 12px;
+    transition: all 0.2s;
 }
 
 .btn-back{
     border: 4px solid var(--marker);
     background-color: var(--bg-o);
     color: var(--marker);
+}
+.btn-back:hover{
+    background-color: rgb(221, 183, 252);
+}
+.btn-restart:hover{
+    background-color: rgb(198, 183, 252);
 }
 
 .btn-restart{
@@ -214,6 +221,10 @@ header{
     font-weight: 600;
     text-align: center;
     text-shadow: 1px 1px 10px;
+
+    /* font-family: 'Pacifico', cursive; */
+    text-shadow: 1px 1px 10px rgb(108, 62, 192);
+    color: rgb(195, 162, 255);
 }
 
 .hidden{
