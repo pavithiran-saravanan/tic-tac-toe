@@ -43,6 +43,7 @@ const gameboard = function(){
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell)=>{
             cell.addEventListener('click', (e)=>{
+                if(cell.textContent === 'X' || cell.textContent === 'O') return;
                 const marker = players[_currPlayer].marker;
                 _currPlayer = _currPlayer === 0 ? 1 : 0;
                 setMarker(cell.getAttribute('data-row'), cell.getAttribute('data-col'), marker);
