@@ -32,7 +32,7 @@ const gameboard = function(){
     let _markerCount = 0;
     let board = [['', '', ''],
                  ['', '', ''],
-                 ['', '', ''],]
+                 ['', '', ''],];
     const setMarker = function(row, col, marker){
         board[row][col] = marker;
     };
@@ -69,6 +69,22 @@ const gameboard = function(){
         document.querySelector('.gameboard').style['pointer-events'] = 'none';
         displayResult();
     }
+    const reset = function(){
+        console.log(board);
+        _currPlayer = 0;
+        _markerCount = 0;
+        board = [['', '', ''],
+                 ['', '', ''],
+                 ['', '', '']];
+        document.querySelector('.gameboard').style['pointer-events'] = 'all';
+        document.querySelector('.gameboard').innerHTML = '';
+        document.querySelector('.result').textContent = '-- It is a tie --';
+        document.querySelector('.result').classList.add('hidden');
+        document.querySelector('.turn-main').classList.remove('hidden');
+        document.querySelector('.symbol').textContent = 'X';
+
+        render();
+    }
 
     const addClickEventListener = function(){
         const cells = document.querySelectorAll('.cell');
@@ -87,8 +103,8 @@ const gameboard = function(){
                 cell.setAttribute('turn', players[_currPlayer].marker);
                 document.querySelector('.turn-main').setAttribute('turn', players[_currPlayer].marker);
                 document.querySelector('.symbol').textContent = players[_currPlayer].marker;
+                document.querySelector('.turn').textContent = `${players[_currPlayer].name}`;
 
-                console.log(curr);
                 if(is_three_in_a_row(curr.marker)) announceWinner(curr);
                 if(isOver()) displayResult();
             });
@@ -108,13 +124,14 @@ const gameboard = function(){
                 cell.setAttribute('mark', mark);
                 cell.setAttribute('turn', 'X');
                 document.querySelector('.turn-main').setAttribute('turn', 'X');
+                document.querySelector('.turn').textContent = `${players[_currPlayer].name}`;
 
                 gb.appendChild(cell);
             });
         });
         addClickEventListener();
     }
-    return{setMarker, print, render};
+    return{setMarker, print, render, reset};
 }();
 
 // Write a factory function that returns a player object
@@ -128,4 +145,5 @@ const createPlayer = function(name, marker){
 let players = [createPlayer("Player One", "X"), createPlayer("Player Two", 'O')];
 
 gameboard.render();
+document.querySelector('.btn-restart').addEventListener('click', gameboard.reset);
 
