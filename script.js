@@ -78,7 +78,6 @@ const gameboard = function(){
             });
         });
         addClickEventListener();
-        // addHoverEventListener();
     }
     return{setMarker, print, render};
 }();

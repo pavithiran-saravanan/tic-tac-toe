@@ -6,24 +6,38 @@
 }
 
 :root{
-    --bg-primary: rgb(255, 237, 70);
-    --bg-board: rgb(231, 231, 231);
-    --outline: rgb(238, 224, 99);
-
-    --bg-cell: rgb(255, 255, 255);
-    --bg-cell-hover: rgb(227, 228, 213);
-    
+    --bg-primary: rgb(119, 185, 174);
+    --bg-board: rgb(255, 255, 255);
+    --bg-cell: rgb(243, 243, 243);
     --title: rgba(0, 0, 0, 0.295);
-    --turn: rgb(185, 170, 27);
     --marker: rgba(0, 0, 0, 0.247);
-    
-    --bg-x: rgb(255, 95, 121);
-    --bg-o: rgb(144, 255, 110);
+    --x: rgb(95, 255, 228);
+    --bg-x: rgb(143, 242, 255);
+    --o: rgb(144, 255, 110);
+    --bg-o: rgb(185, 255, 164);
+
+
+    /*Dark Test*/
+    --bg-primary: rgb(46, 36, 68);
+    --bg-board:  rgb(76, 60, 112);
+    --bg-cell:  rgb(98, 78, 143);
+    --x: rgba(95, 106, 255, 0.712);
+    --bg-x: rgba(143, 145, 255, 0.712);
+    --o: rgba(202, 110, 255, 0.705);
+    --bg-o: rgba(214, 164, 255, 0.699);
+    --title: rgb(118, 93, 172);
+    --marker: rgba(0, 0, 0, 0.479);
 }
 
 body{
     background-color: var(--bg-primary);
     height: 100vh;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .title{
@@ -45,38 +59,35 @@ body{
     height: clamp(300px, 50vw, 450px);
     width: clamp(300px, 50vw, 450px);
     font-size: 50px;
-    border-radius: 20px;
+    border-radius: 12px;
     overflow: hidden;
-    padding: 20px;
-    gap: 14px;
+    padding: 10px;
+    gap: 10px;
     background-color: var(--bg-board);
     user-select: none;
-    border: 10px solid var(--outline);
 
-    /* box-shadow: inset 0px -1px 3px rgba(0, 0, 0, 0.575); */
+    /* box-shadow: 2px 2px 15px var(--bg-board); */
 }
 
 .cell{
     background-color: var(--bg-cell);
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 3.5rem;
     font-weight: 800;
     display: grid;
     place-content: center;
-
-    /* box-shadow: inset -1px 0px 3px rgba(0, 0, 0, 0.164); */
     color: var(--marker);
     position: relative;
 }
 
 .cell[mark='X']{
     background-color: var(--bg-x);
-    border: 5px solid;
+    box-shadow: inset 1px 1px 15px;
 }
 
 .cell[mark='O']{
     background-color: var(--bg-o);
-    border: 5px solid;
+    box-shadow: inset 2px 2px 15px;
 }
 
 .turn-indicator{
@@ -114,11 +125,14 @@ body{
 }
 
 .turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover{
-    border: 5px solid rgb(113, 255, 70);
-    background-color: rgb(168, 255, 141);
+    background-color: var(--bg-o);
+    transition: all 0.2s;
+    box-shadow: inset 1px 1px 15px;
 }
 
 .turn-indicator:has(.turn-main[turn='X']) ~ .gameboard > .cell[mark='']:hover{
-    border: 5px solid rgb(255, 95, 121);
-    background-color: rgb(255, 143, 162);
+    background-color: var(--bg-x);
+    transition: all 0.2s;
+    box-shadow: inset 1px 1px 15px;
 }
+
