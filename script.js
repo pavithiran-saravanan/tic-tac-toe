@@ -48,6 +48,8 @@ const gameboard = function(){
                 _currPlayer = _currPlayer === 0 ? 1 : 0;
                 setMarker(cell.getAttribute('data-row'), cell.getAttribute('data-col'), marker);
                 cell.textContent = marker;
+                cell.setAttribute('marked', true);
+                document.querySelector('.symbol').textContent = players[_currPlayer].marker;
             });
         });
     };
@@ -62,6 +64,7 @@ const gameboard = function(){
                 cell.setAttribute('data-row', r);
                 cell.setAttribute('data-col', c);
                 cell.setAttribute('data-pos', `${r},${c}`);
+                cell.setAttribute('marked', false);
                 gb.appendChild(cell);
             });
         });
@@ -77,7 +80,9 @@ const createPlayer = function(name, marker){
     };
     return{name, marker, print};
 };
-let players = [createPlayer("player1", "X"), createPlayer("player2", "O")];
+// let players = [createPlayer("player1", "❤️"), createPlayer("player2", '💚')];
+let players = [createPlayer("player1", "X"), createPlayer("player2", 'O')];
 
 gameboard.render();
+console.log(document);
 
