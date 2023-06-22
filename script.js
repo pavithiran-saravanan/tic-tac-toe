@@ -47,9 +47,15 @@ const gameboard = function(){
                 const marker = players[_currPlayer].marker;
                 _currPlayer = _currPlayer === 0 ? 1 : 0;
                 setMarker(cell.getAttribute('data-row'), cell.getAttribute('data-col'), marker);
+
                 cell.textContent = marker;
-                cell.setAttribute('marked', true);
+                cell.setAttribute('mark', marker);
+
+                cell.setAttribute('turn', players[_currPlayer].marker);
+                document.querySelector('.turn-main').setAttribute('turn', players[_currPlayer].marker);
                 document.querySelector('.symbol').textContent = players[_currPlayer].marker;
+
+                console.log(cell);
             });
         });
     };
@@ -61,14 +67,18 @@ const gameboard = function(){
                 const cell = document.createElement('div');
                 cell.classList.add('cell');
                 cell.textContent = mark;
+
                 cell.setAttribute('data-row', r);
                 cell.setAttribute('data-col', c);
-                cell.setAttribute('data-pos', `${r},${c}`);
-                cell.setAttribute('marked', false);
+                cell.setAttribute('mark', mark);
+                cell.setAttribute('turn', 'X');
+                document.querySelector('.turn-main').setAttribute('turn', 'X');
+
                 gb.appendChild(cell);
             });
         });
         addClickEventListener();
+        // addHoverEventListener();
     }
     return{setMarker, print, render};
 }();
@@ -84,5 +94,4 @@ const createPlayer = function(name, marker){
 let players = [createPlayer("player1", "X"), createPlayer("player2", 'O')];
 
 gameboard.render();
-console.log(document);
 

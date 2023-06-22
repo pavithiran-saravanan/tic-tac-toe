@@ -2,15 +2,23 @@
     padding: 0px;
     margin: 0px;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 :root{
-    --bg-primary: rgb(241, 213, 85);
-    --bg-board: white;
-    --bg-cell: rgb(243, 233, 95);
-    --bg-cell-hover: rgb(255, 252, 90);
-    --title: rgb(172, 136, 19);
-    --marker: rgba(109, 11, 11, 0.24);
+    --bg-primary: rgb(255, 237, 70);
+    --bg-board: rgb(231, 231, 231);
+    --outline: rgb(238, 224, 99);
+
+    --bg-cell: rgb(255, 255, 255);
+    --bg-cell-hover: rgb(227, 228, 213);
+    
+    --title: rgba(0, 0, 0, 0.295);
+    --turn: rgb(185, 170, 27);
+    --marker: rgba(0, 0, 0, 0.247);
+    
+    --bg-x: rgb(255, 95, 121);
+    --bg-o: rgb(144, 255, 110);
 }
 
 body{
@@ -19,20 +27,14 @@ body{
 }
 
 .title{
-    /* color: var(--title); */
-
     color: var(--title);
     font-size: 4rem;
-    font-weight: 800;
-    text-align: center;
-    height: 20vh;
+    font-weight: 700;
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.game-container{
-    border-radius: 16px;
+    padding: 40px;
+    padding-bottom: 20px;
+    letter-spacing: -1px;
 }
 
 .gameboard{
@@ -43,39 +45,80 @@ body{
     height: clamp(300px, 50vw, 450px);
     width: clamp(300px, 50vw, 450px);
     font-size: 50px;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
-    padding: 12px;
-    gap: 12px;
-    background-color: white;
+    padding: 20px;
+    gap: 14px;
+    background-color: var(--bg-board);
     user-select: none;
+    border: 10px solid var(--outline);
+
+    /* box-shadow: inset 0px -1px 3px rgba(0, 0, 0, 0.575); */
 }
 
 .cell{
     background-color: var(--bg-cell);
     border-radius: 10px;
-    font-size: 4rem;
-    font-weight: 990;
+    font-size: 3.5rem;
+    font-weight: 800;
     display: grid;
     place-content: center;
-    box-shadow: inset 1px 1px 15px rgba(233, 204, 41, 0.459);
 
+    /* box-shadow: inset -1px 0px 3px rgba(0, 0, 0, 0.164); */
     color: var(--marker);
+    position: relative;
 }
 
-.cell[marked=true]{
-    background-color: var(--bg-cell-hover);
+.cell[mark='X']{
+    background-color: var(--bg-x);
+    border: 5px solid;
 }
 
-.cell[marked=false]:hover{
-    background-color: var(--bg-cell-hover);
+.cell[mark='O']{
+    background-color: var(--bg-o);
+    border: 5px solid;
 }
 
 .turn-indicator{
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 40px;
+}
 
+.turn-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    background-color: var(--bg-x); 
+    color: var(--turn);
+    padding: 4px 20px;
+    border: 3px solid var(--marker);
     color: var(--marker);
+    user-select: none;
+}
+
+.symbol{
+    font-weight: 900;
+    color: var(--marker);
+}
+
+.turn-main[turn='O']{
+    background-color: var(--bg-o);
+}
+
+.turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover{
+    border: 5px solid rgb(113, 255, 70);
+    background-color: rgb(168, 255, 141);
+}
+
+.turn-indicator:has(.turn-main[turn='X']) ~ .gameboard > .cell[mark='']:hover{
+    border: 5px solid rgb(255, 95, 121);
+    background-color: rgb(255, 143, 162);
 }
