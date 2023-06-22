@@ -6,7 +6,8 @@
 }
 
 :root{
-    --bg-primary: rgb(119, 185, 174);
+    /*Light*/
+    /* --bg-primary: rgb(119, 185, 174);
     --bg-board: rgb(255, 255, 255);
     --bg-cell: rgb(243, 243, 243);
     --title: rgba(0, 0, 0, 0.295);
@@ -14,8 +15,27 @@
     --x: rgb(95, 255, 228);
     --bg-x: rgb(143, 242, 255);
     --o: rgb(144, 255, 110);
-    --bg-o: rgb(185, 255, 164);
+    --bg-o: rgb(185, 255, 164); */
 
+    /* --bg-primary: rgb(119, 185, 174);
+    --bg-board: rgb(97, 153, 144);
+    --bg-cell: rgb(143, 223, 209);
+    --title: rgba(0, 0, 0, 0.295);
+    --marker: rgba(0, 0, 0, 0.247);
+    --x: rgb(95, 255, 228);
+    --bg-x: rgb(143, 242, 255);
+    --o: rgb(144, 255, 110);
+    --bg-o: rgb(185, 255, 164); */
+
+    --bg-primary: rgb(139, 119, 185);
+    --bg-board: rgb(109, 97, 153);
+    --bg-cell: rgb(174, 143, 223);
+    --title: rgba(0, 0, 0, 0.295);
+    --marker: rgba(0, 0, 0, 0.247);
+    --x: rgb(95, 106, 255);
+    --bg-x: rgb(143, 145, 255);
+    --o: rgb(202, 110, 255);
+    --bg-o: rgb(214, 164, 255);
 
     /*Dark Test*/
     --bg-primary: rgb(46, 36, 68);
@@ -38,11 +58,12 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 
 .title{
     color: var(--title);
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     display: flex;
     justify-content: center;
@@ -56,23 +77,20 @@ header{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: clamp(300px, 50vw, 450px);
-    width: clamp(300px, 50vw, 450px);
-    font-size: 50px;
+    height: clamp(320px, 50vw, 450px);
+    width: clamp(320px, 50vw, 450px);
     border-radius: 12px;
     overflow: hidden;
     padding: 10px;
     gap: 10px;
     background-color: var(--bg-board);
     user-select: none;
-
-    /* box-shadow: 2px 2px 15px var(--bg-board); */
 }
 
 .cell{
     background-color: var(--bg-cell);
-    border-radius: 12px;
-    font-size: 3.5rem;
+    border-radius: 8px;
+    font-size: 3.7em;
     font-weight: 800;
     display: grid;
     place-content: center;
@@ -82,34 +100,37 @@ header{
 
 .cell[mark='X']{
     background-color: var(--bg-x);
-    box-shadow: inset 1px 1px 15px;
+    box-shadow: inset 1px 1px 8px;
 }
 
 .cell[mark='O']{
     background-color: var(--bg-o);
-    box-shadow: inset 2px 2px 15px;
+    box-shadow: inset 2px 2px 8px;
 }
 
 .turn-indicator{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
     margin-bottom: 40px;
 }
 
 .turn-main{
+    box-shadow: 1px 1px 10px var(--title);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     border-radius: 10px;
-    font-size: 30px;
-    font-weight: 600;
+
+    font-size: 20px;
+    font-weight: 700;
+    height: 50px;
+
     letter-spacing: -.5px;
     background-color: var(--bg-x); 
     color: var(--turn);
-    padding: 4px 20px;
+    padding: 5px 20px;
     border: 3px solid var(--marker);
     color: var(--marker);
     user-select: none;
@@ -127,12 +148,74 @@ header{
 .turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover{
     background-color: var(--bg-o);
     transition: all 0.2s;
-    box-shadow: inset 1px 1px 15px;
+    box-shadow: inset 1px 1px 8px;
 }
 
 .turn-indicator:has(.turn-main[turn='X']) ~ .gameboard > .cell[mark='']:hover{
     background-color: var(--bg-x);
     transition: all 0.2s;
-    box-shadow: inset 1px 1px 15px;
+    box-shadow: inset 1px 1px 8px;
 }
 
+.btn-container{
+    min-width: 320px;
+    margin: auto;
+    display: grid;
+    grid-auto-flow: column;
+    place-content: center;
+    gap: 15px;
+    padding-top: 40px;
+}
+
+.btn{
+    border: none;
+    outline: none;
+    padding: 5px 20px;
+    display: grid;
+    place-content: center;
+    grid-template-columns: auto auto;
+    height: 60px;
+    gap: 10px;
+    border-radius: 12px;
+}
+
+.btn-back{
+    border: 4px solid var(--marker);
+    background-color: var(--bg-o);
+    color: var(--marker);
+}
+
+.btn-restart{
+    border: 4px solid var(--marker);
+    background-color: var(--bg-x);
+    color: var(--marker);
+}
+
+.btn-icon{
+    fill: var(--marker);
+    width: 20px;
+    height: 20px;
+    align-self: center;
+}
+
+.btn-text{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.display-container{
+    margin: auto;
+    padding-top: 20px;
+}
+
+.result{
+    font-size: 30px;
+    color: rgb(201, 177, 255);
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 1px 1px 10px;
+}
+
+.hidden{
+    display: none;
+}
