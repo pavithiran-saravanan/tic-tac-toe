@@ -8,6 +8,7 @@
     --bg-primary: rgb(241, 213, 85);
     --bg-board: white;
     --bg-cell: rgb(243, 233, 95);
+    --bg-cell-hover: rgb(255, 252, 90);
 }
 
 body{
@@ -17,7 +18,7 @@ body{
 
 .title{
     color: rgb(172, 136, 19);
-    font-size: 70px;
+    font-size: 4rem;
     font-weight: 800;
     text-align: center;
     height: 20vh;
@@ -43,6 +44,7 @@ body{
     padding: 12px;
     gap: 12px;
     background-color: white;
+    user-select: none;
 }
 
 .cell{
@@ -53,5 +55,10 @@ body{
     font-weight: 990;
     display: grid;
     place-content: center;
+    box-shadow: inset 1px 1px 15px rgba(233, 204, 41, 0.459);
 }
 
+.cell:hover{
+    background-color: var(--bg-cell-hover);
+    transition: all 0.2s;
+}
