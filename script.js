@@ -28,31 +28,46 @@
 
 // Declare a gameboard module (object)
 const gameboard = function(){
-    let board = [['X', 'O', 'X'],
-                 ['X', 'O', 'X'],
-                 ['X', 'O', 'X'],]
+    let _currPlayer = 0;
+    let board = [['', '', ''],
+                 ['', '', ''],
+                 ['', '', ''],]
     const setMarker = function(row, col, marker){
         board[row][col] = marker;
     };
     const print = function(){
         console.log(board);
     };
+
+    const addClickEventListener = function(){
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell)=>{
+            cell.addEventListener('click', (e)=>{
+                const marker = players[_currPlayer].marker;
+                _currPlayer = _currPlayer === 0 ? 1 : 0;
+                setMarker(cell.getAttribute('data-row'), cell.getAttribute('data-col'), marker);
+                cell.textContent = marker;
+            });
+        });
+    };
+
     const render = function(){
         const gb = document.querySelector('.gameboard');
-        board.forEach((row)=>{
-            row.forEach((mark) => {
+        board.forEach((row, r)=>{
+            row.forEach((mark, c) => {
                 const cell = document.createElement('div');
                 cell.classList.add('cell');
                 cell.textContent = mark;
+                cell.setAttribute('data-row', r);
+                cell.setAttribute('data-col', c);
+                cell.setAttribute('data-pos', `${r},${c}`);
                 gb.appendChild(cell);
             });
         });
+        addClickEventListener();
     }
     return{setMarker, print, render};
 }();
-
-gameboard.print();
-gameboard.render();
 
 // Write a factory function that returns a player object
 const createPlayer = function(name, marker){
@@ -61,8 +76,7 @@ const createPlayer = function(name, marker){
     };
     return{name, marker, print};
 };
+let players = [createPlayer("player1", "X"), createPlayer("player2", "O")];
 
-const player1 = createPlayer("player1", "X");
-const player2 = createPlayer("player2", "O");
-player1.print();
-player2.print();
+gameboard.render();
+

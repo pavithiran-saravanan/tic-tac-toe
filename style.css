@@ -60,5 +60,4 @@ body{
 
 .cell:hover{
     background-color: var(--bg-cell-hover);
-    transition: all 0.2s;
 }
