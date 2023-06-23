@@ -47,9 +47,10 @@ const gameboard = function(){
         if(!isWon){
             document.querySelector('.turn').textContent = 'Tie Game';
             document.querySelector('.turn-main').id = 'announcement';
+            document.querySelector('.symbol').textContent = '';
+            document.querySelector('.turn-main').style.gap = '0px';
         }
-        document.querySelector('.symbol').textContent = '';
-        document.querySelector('.turn-main').style.gap = '0px';
+        
         // document.querySelector('.btn-restart').classList.add('highlight-restart');
     }
     const announceWinner = function(player){

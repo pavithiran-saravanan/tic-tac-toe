@@ -184,19 +184,33 @@ display: flex;
     border: 4px solid var(--marker);
     background-color: var(--bg-o);
     color: var(--marker);
+
+    /* Outline Styled Button */
+    background-color: transparent;
+    border: 3px solid var(--bg-o-light);
+    color: var(--bg-o-light);
+    background-color: var(--bg-board);
 }
 .btn-back:hover{
-    background-color: rgb(221, 183, 252);
+    /* background-color: rgb(221, 183, 252); */
+    background-color: var(--bg-cell);
 }
 
 .btn-restart{
     border: 4px solid var(--marker);
     background-color: var(--bg-x);
     color: var(--marker);
+
+    /* Outline Styled Button */
+    background-color: transparent;
+    border: 3px solid var(--bg-x-light);
+    color: var(--bg-x-light);
+    background-color: var(--bg-board);
 }
 
 .btn-restart:hover{
-    background-color: rgb(198, 183, 252);
+    /* background-color: rgb(198, 183, 252); */
+    background-color: var(--bg-cell);
 }
 
 .highlight-restart{
@@ -208,6 +222,14 @@ display: flex;
     width: 20px;
     height: 20px;
     align-self: center;
+}
+
+.back-icon{
+    fill: var(--bg-o-light);
+}
+
+.restart-icon{
+    fill: var(--bg-x-light);
 }
 
 .btn-text{
@@ -358,10 +380,10 @@ input{
 }
 
 #announcement-x .symbol{
-    color: var(--bg-x-light);
-    /* color: var(--marker); */
+    /* color: var(--bg-x-light); */
+    color: var(--marker);
 }
 #announcement-o .symbol{
-    color: var(--bg-o-light);
-    /* color: var(--marker); */
+    /* color: var(--bg-o-light); */
+    color: var(--marker);
 }
