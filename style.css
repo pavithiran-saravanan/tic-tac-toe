@@ -39,8 +39,23 @@
     --title: rgb(195, 162, 255);
     --marker: rgba(0, 0, 0, 0.479);
 
-    --bg-o-light: rgb(221, 183, 252);
-    --bg-x-light: rgb(197, 191, 255);
+    --bg-o-light: rgb(215, 170, 252);
+    --bg-x-light: rgb(181, 173, 255);
+
+
+    /* Darker Test*/
+    --bg-primary: rgb(30, 21, 49);
+    --bg-board:  rgb(45, 30, 83);
+    --bg-cell:  rgb(63, 45, 105);
+    --x: rgba(95, 106, 255, 0.712);
+    --bg-x: rgba(123, 125, 255, 0.712);
+    --o: rgba(202, 110, 255, 0.705);
+    --bg-o: rgba(195, 121, 255, 0.699);
+    --title: rgb(195, 162, 255);
+    --marker: rgba(0, 0, 0, 0.575);
+
+    --bg-o-light: rgb(206, 145, 255);
+    --bg-x-light: rgb(155, 144, 255);
 }
 
 body{
@@ -122,13 +137,13 @@ display: flex;
 
     font-size: 20px;
     font-weight: 700;
-    height: 60px;
+    height: 50px;
 
     color: var(--turn);
     padding: 0px 24px;
-    border: 4px solid var(--marker);
+    border: 3px solid var(--marker);
     color: var(--marker);
-    background-color: rgb(197, 191, 255);
+    background-color: var(--bg-x-light);
     user-select: none;
 
     /* height: 100px; */
@@ -141,7 +156,7 @@ display: flex;
 }
 
 .turn-main[turn='O']{
-    background-color: rgb(221, 183, 252);
+    background-color: var(--bg-o-light);
 }
 
 .turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover{
@@ -260,10 +275,6 @@ display: flex;
     gap: 20px;
     width: clamp(320px, 50%, 700px);
     margin: auto;
-}
-
-input{
-    width: 100%;
 }
 
 .btn-next{
@@ -386,4 +397,12 @@ input{
 #announcement-o .symbol{
     /* color: var(--bg-o-light); */
     color: var(--marker);
+}
+
+.player-name{
+    width: 100%;   
+}
+
+.player-name:focus{
+    background-color: var(--bg-board);
 }
