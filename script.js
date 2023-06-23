@@ -43,11 +43,28 @@ const gameboard = function(){
         if(_markerCount < 9) return false;
         return true;
     }
-    const displayResult = ()=>{
-        document.querySelector('.result').classList.remove('hidden');
-        document.querySelector('.turn-main').classList.add('hidden');
-        document.querySelector('.btn-restart').classList.add('highlight-restart');
+    const displayResult = (isWon)=>{
+        if(!isWon){
+            document.querySelector('.turn').textContent = 'Tie Game';
+            document.querySelector('.turn-main').id = 'announcement';
+        }
+        document.querySelector('.symbol').textContent = '';
+        document.querySelector('.turn-main').style.gap = '0px';
+        // document.querySelector('.btn-restart').classList.add('highlight-restart');
     }
+    const announceWinner = function(player){
+        // document.querySelector('.result').textContent = `-- ${player.name} Won --`;
+
+        document.querySelector('.turn').textContent = ` ${player.name} Won`;
+        document.querySelector('.gameboard').style['pointer-events'] = 'none';
+        document.querySelector('.turn-main').setAttribute('turn', player.marker);
+        document.querySelector('.symbol').textContent = player.marker;
+
+        const id = `announcement-${player.marker.toLowerCase()}`;
+        document.querySelector('.turn-main').id = id;
+        displayResult(true);
+    }
+
     const is_three_in_a_row = function(marker){
         // Check row wise victory
         if(board[0][0] == marker && board[0][1] == marker && board[0][2] == marker) return true;
@@ -65,11 +82,7 @@ const gameboard = function(){
         
         return false;
     }
-    const announceWinner = function(player){
-        document.querySelector('.result').textContent = `-- ${player.name} Won --`;
-        document.querySelector('.gameboard').style['pointer-events'] = 'none';
-        displayResult();
-    }
+    
     const reset = function(){
         console.log(board);
         _currPlayer = 0;
@@ -83,7 +96,9 @@ const gameboard = function(){
         document.querySelector('.result').classList.add('hidden');
         document.querySelector('.turn-main').classList.remove('hidden');
         document.querySelector('.symbol').textContent = 'X';
-        document.querySelector('.btn-restart').classList.remove('highlight-restart');
+        // document.querySelector('.btn-restart').classList.remove('highlight-restart');
+        document.querySelector('.turn-main').id = '';
+        document.querySelector('.turn-main').style.gap = '10px';
         render();
     }
 
@@ -104,10 +119,10 @@ const gameboard = function(){
                 cell.setAttribute('turn', players[_currPlayer].marker);
                 document.querySelector('.turn-main').setAttribute('turn', players[_currPlayer].marker);
                 document.querySelector('.symbol').textContent = players[_currPlayer].marker;
-                document.querySelector('.turn').textContent = `${players[_currPlayer].name}`;
+                document.querySelector('.turn').textContent = `${players[_currPlayer].name}'s Turn`;
 
                 if(is_three_in_a_row(curr.marker)) announceWinner(curr);
-                if(isOver()) displayResult();
+                else if(isOver()) displayResult();
             });
         });
     };
@@ -125,7 +140,7 @@ const gameboard = function(){
                 cell.setAttribute('mark', mark);
                 cell.setAttribute('turn', 'X');
                 document.querySelector('.turn-main').setAttribute('turn', 'X');
-                document.querySelector('.turn').textContent = `${players[_currPlayer].name}`;
+                document.querySelector('.turn').textContent = `${players[_currPlayer].name}'s Turn`;
 
                 gb.appendChild(cell);
             });
@@ -143,17 +158,25 @@ const createPlayer = function(name, marker){
     return{name, marker, print};
 };
 // let players = [createPlayer("player1", "❤️"), createPlayer("player2", '💚')];
-let players = [createPlayer("Player One", "X"), createPlayer("Player Two", 'O')];
+let players = [createPlayer('Player One', "X"), createPlayer('Player Two', 'O')];
 
-gameboard.render();
 document.querySelector('.btn-restart').addEventListener('click', gameboard.reset);
 
 document.querySelector('.btn-next').addEventListener('click', (e)=>{
     document.querySelector('.home').classList.add('hidden');
     document.querySelector('.game-container').classList.remove('hidden');
+
+    const player1 = document.querySelector('.player-x').value;
+    const player2 = document.querySelector('.player-o').value;
+    players[0].name = player1;
+    players[1].name = player2;
+    gameboard.reset();
 });
 
 document.querySelector('.btn-back').addEventListener('click', (e)=>{
     document.querySelector('.home').classList.remove('hidden');
     document.querySelector('.game-container').classList.add('hidden');
+    gameboard.reset();
 });
+
+

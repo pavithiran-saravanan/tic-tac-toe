@@ -2,8 +2,8 @@
     padding: 0px;
     margin: 0px;
     font-family: 'Poppins', sans-serif;
-    letter-spacing: -1px;
     box-sizing: border-box;
+    letter-spacing: -.5px;
 }
 
 :root{
@@ -36,7 +36,7 @@
     --bg-x: rgba(169, 171, 255, 0.712);
     --o: rgba(202, 110, 255, 0.705);
     --bg-o: rgba(214, 164, 255, 0.699);
-    --title: rgb(118, 93, 172);
+    --title: rgb(195, 162, 255);
     --marker: rgba(0, 0, 0, 0.479);
 
     --bg-o-light: rgb(221, 183, 252);
@@ -58,15 +58,14 @@ header{
 .title{
     color: var(--title);
     font-size: 3rem;
-    /* font-weight: 300; */
     display: flex;
     justify-content: center;
     padding: 40px;
-    /* letter-spacing: -1px; */
+    letter-spacing: 0px;
     font-family: 'Pacifico', cursive;
 
     text-shadow: 1px 1px 10px rgb(108, 62, 192);
-    color: rgb(195, 162, 255);
+    color: var(--title);
 }
 
 .gameboard{
@@ -123,16 +122,17 @@ display: flex;
 
     font-size: 20px;
     font-weight: 700;
-    height: 50px;
+    height: 60px;
 
-    letter-spacing: -.5px;
-    /* background-color: var(--bg-x);  */
     color: var(--turn);
     padding: 5px 20px;
-    border: 3px solid var(--marker);
+    border: 4px solid var(--marker);
     color: var(--marker);
     background-color: rgb(197, 191, 255);
     user-select: none;
+
+    /* height: 100px; */
+    /* width: 300px; */
 }
 
 .symbol{
@@ -141,7 +141,6 @@ display: flex;
 }
 
 .turn-main[turn='O']{
-    /* background-color: var(--bg-o); */
     background-color: rgb(221, 183, 252);
 }
 
@@ -220,17 +219,17 @@ display: flex;
     padding-top: 20px;
 }
 
-.result{
+/* .result{
     font-size: 30px;
     color: rgb(201, 177, 255);
     font-weight: 600;
     text-align: center;
     text-shadow: 1px 1px 10px;
 
-    /* font-family: 'Pacifico', cursive; */
     text-shadow: 1px 1px 10px rgb(108, 62, 192);
     color: rgb(195, 162, 255);
 }
+ */
 
 .home{
     display: grid;
@@ -310,4 +309,52 @@ display: flex;
 
 .hidden{
     display: none;
+}
+
+#announcement-x{
+    /* background-color: transparent;
+    border: 3px solid var(--bg-x-light);
+    color: var(--bg-x-light);
+    text-shadow: 1px 1px 10px rgb(108, 62, 192);
+    box-shadow: 1px 1px 10px rgb(108, 62, 192); */
+
+    /* background-color: transparent;
+    border-color:  rgb(195, 162, 255);
+    color: rgb(195, 162, 255);
+    box-shadow: 1px 1px 10px rgb(108, 62, 192);
+    text-shadow: 1px 1px 10px rgb(108, 62, 192); */
+}
+
+#announcement-o{
+    /* background-color: transparent;
+    border: 3px solid var(--bg-o-light);
+    color: var(--bg-o-light);
+    box-shadow: 1px 1px 10px rgb(108, 62, 192);
+    text-shadow: 1px 1px 10px rgb(108, 62, 192); */
+    
+    /* background-color: transparent;
+    border-color:  rgb(195, 162, 255);
+    color: rgb(195, 162, 255);
+    box-shadow: 1px 1px 10px rgb(108, 62, 192);
+    text-shadow: 1px 1px 10px rgb(108, 62, 192);
+    font-family: 'Pacifico', cursive; */
+}
+
+#announcement{
+    /* background-color: transparent;
+    border-color:  rgb(195, 162, 255);
+    color: rgb(195, 162, 255);
+
+    box-shadow: 1px 1px 10px rgb(108, 62, 192);
+    text-shadow: 1px 1px 10px rgb(108, 62, 192);
+    font-family: 'Pacifico', cursive; */
+}
+
+#announcement-x .symbol{
+    color: var(--bg-x-light);
+    /* color: var(--marker); */
+}
+#announcement-o .symbol{
+    color: var(--bg-o-light);
+    /* color: var(--marker); */
 }
