@@ -46,6 +46,7 @@ const gameboard = function(){
     const displayResult = ()=>{
         document.querySelector('.result').classList.remove('hidden');
         document.querySelector('.turn-main').classList.add('hidden');
+        document.querySelector('.btn-restart').classList.add('highlight-restart');
     }
     const is_three_in_a_row = function(marker){
         // Check row wise victory
@@ -82,7 +83,7 @@ const gameboard = function(){
         document.querySelector('.result').classList.add('hidden');
         document.querySelector('.turn-main').classList.remove('hidden');
         document.querySelector('.symbol').textContent = 'X';
-
+        document.querySelector('.btn-restart').classList.remove('highlight-restart');
         render();
     }
 

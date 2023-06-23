@@ -188,14 +188,19 @@ display: flex;
 .btn-back:hover{
     background-color: rgb(221, 183, 252);
 }
-.btn-restart:hover{
-    background-color: rgb(198, 183, 252);
-}
 
 .btn-restart{
     border: 4px solid var(--marker);
     background-color: var(--bg-x);
     color: var(--marker);
+}
+
+.btn-restart:hover{
+    background-color: rgb(198, 183, 252);
+}
+
+.highlight-restart{
+    background-color: rgb(198, 183, 252);
 }
 
 .btn-icon{
