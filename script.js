@@ -148,3 +148,12 @@ let players = [createPlayer("Player One", "X"), createPlayer("Player Two", 'O')]
 gameboard.render();
 document.querySelector('.btn-restart').addEventListener('click', gameboard.reset);
 
+document.querySelector('.btn-next').addEventListener('click', (e)=>{
+    document.querySelector('.home').classList.add('hidden');
+    document.querySelector('.game-container').classList.remove('hidden');
+});
+
+document.querySelector('.btn-back').addEventListener('click', (e)=>{
+    document.querySelector('.home').classList.remove('hidden');
+    document.querySelector('.game-container').classList.add('hidden');
+});
