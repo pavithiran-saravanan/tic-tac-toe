@@ -228,10 +228,18 @@ document.querySelector('.btn-next').addEventListener('click', (e)=>{
     gameboard.reset();
 });
 
-document.querySelector('.btn-back').addEventListener('click', (e)=>{
-    document.querySelector('.home').classList.remove('hidden');
-    document.querySelector('.game-container').classList.add('hidden');
-    gameboard.reset();
+const goHomeButtons = document.querySelectorAll('.go-home');
+goHomeButtons.forEach((btn)=>{
+    btn.addEventListener('click', (e)=>{
+        document.querySelector('.landing').classList.remove('hidden');
+        document.querySelector('.home').classList.add('hidden');
+        document.querySelector('.game-container').classList.add('hidden');
+        gameboard.reset();
+    });
 });
 
 
+document.querySelector('.pvp').addEventListener('click', (e)=>{
+    document.querySelector('.home').classList.remove('hidden');
+    document.querySelector('.landing').classList.add('hidden');
+});

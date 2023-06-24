@@ -268,26 +268,25 @@ display: flex;
     display: grid;
     place-content: center;
     gap: 20px;
-    width: clamp(320px, 50%, 700px);
+    width: clamp(330px, 60%, 700px);
     margin: auto;
 }
 
-.btn-next{
+.btn-purple{
     place-self: center;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
     min-width: 120px;
     text-align: center;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     padding: 0px 30px;
 
     background-color: var(--bg-board);
-    /* border: 3px solid var(--bg-o-light); */
     color: white;
 }
 
-.btn-next:hover{
+.btn-purple:hover{
     background-color: var(--bg-cell);
 }
 
@@ -367,4 +366,49 @@ display: flex;
 
 .player-name:focus{
     background-color: var(--bg-board);
+}
+
+
+.mode-container{
+    width: clamp(300px, 50%, 450px);
+    margin: auto;
+    display: grid;
+    gap: 20px;
+}
+
+.mode{
+    border: 3px solid var(--bg-x-light);
+    background-color: transparent;
+    color: var(--bg-x-light);
+    font-weight: 600;
+    font-size: 22px;
+    height: 100px;
+    border-radius: 12px;
+}
+
+.pvp{
+    border-color: var(--bg-o-light);
+    color: var(--bg-o-light);
+}
+
+.mode:hover{
+    background-color: var(--bg-cell);
+}
+
+.btn-container-home{
+    width: 100%;
+    display: grid;
+    place-content: center;
+    gap: 10px;
+    grid-template-columns: auto auto;
+    margin-top: 20px;
+}
+
+.btn-home{
+    gap: 0px;
+    padding: 0px;
+}
+
+.btn-back{
+    gap: 0px;
 }
