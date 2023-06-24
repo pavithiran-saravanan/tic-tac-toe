@@ -88,11 +88,11 @@ header{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: clamp(320px, 50vw, 420px);
-    width: clamp(320px, 50vw, 420px);
+    height: clamp(300px, 50vw, 420px);
+    width: clamp(300px, 50vw, 420px);
     border-radius: 12px;
     overflow: hidden;
-    padding: 6px;
+    padding: 10px;
     gap: 6px;
     background-color: var(--bg-board);
     user-select: none;
@@ -267,26 +267,9 @@ display: flex;
 .home{
     display: grid;
     row-gap: 20px;
-    width: clamp(330px, 40%, 500px);
+    width: clamp(320px, 60%, 550px);
     margin: auto;
-}
-
-.btn-purple{
-    place-self: center;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    min-width: 120px;
-    text-align: center;
-    /* margin-top: 30px; */
-    padding: 0px 30px;
-
-    background-color: var(--bg-board);
-    color: white;
-}
-
-.btn-purple:hover{
-    background-color: var(--bg-cell);
+    padding: 0px 20px;
 }
 
 .player-name{
@@ -369,10 +352,11 @@ display: flex;
 
 
 .mode-container{
-    width: clamp(330px, 60%, 400px);
+    width: clamp(320px, 60%, 450px);
     margin: auto;
     display: grid;
     gap: 20px;
+    padding: 0px 20px;
 }
 
 .mode{
@@ -396,16 +380,27 @@ display: flex;
 
 .btn-container-home{
     width: 100%;
+    gap: 10px;
+    margin-top: 20px;
     display: grid;
     place-content: center;
-    gap: 10px;
     grid-template-columns: auto auto;
-    margin-top: 20px;
+}
+
+.btn-purple{
+    font-size: 20px;
+    font-weight: 600;
+    background-color: var(--bg-board);
+    color: white;
+    padding: 0px 30px;
+}
+
+.btn-purple:hover{
+    background-color: var(--bg-cell);
 }
 
 .btn-home{
     gap: 0px;
-    padding: 0px;
 }
 
 .btn-back{
