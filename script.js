@@ -217,29 +217,38 @@ let players = [createPlayer('Player One', "X"), createPlayer('Player Two', 'O')]
 
 document.querySelector('.btn-restart').addEventListener('click', gameboard.reset);
 
+// Start Gamme
 document.querySelector('.btn-next').addEventListener('click', (e)=>{
     document.querySelector('.home').classList.add('hidden');
     document.querySelector('.game-container').classList.remove('hidden');
 
     const player1 = document.querySelector('.player-x').value;
     const player2 = document.querySelector('.player-o').value;
-    players[0].name = player1;
-    players[1].name = player2;
+
+    if(player1.trim() !== '')players[0].name = player1;
+    if(player2.trim() !== '')players[1].name = player2;
     gameboard.reset();
 });
 
-const goHomeButtons = document.querySelectorAll('.go-home');
-goHomeButtons.forEach((btn)=>{
-    btn.addEventListener('click', (e)=>{
-        document.querySelector('.landing').classList.remove('hidden');
-        document.querySelector('.home').classList.add('hidden');
-        document.querySelector('.game-container').classList.add('hidden');
-        gameboard.reset();
-    });
+// Home Button
+document.querySelector('.go-home').addEventListener('click', (e)=>{
+    document.querySelector('.landing').classList.remove('hidden');
+    document.querySelector('.home').classList.add('hidden');
+    document.querySelector('.game-container').classList.add('hidden');
+    gameboard.reset();
 });
 
+// Back Button
+document.querySelector('.btn-back').addEventListener('click', (e)=>{
+    document.querySelector('.home').classList.remove('hidden');
+    document.querySelector('.game-container').classList.add('hidden');
+    gameboard.reset();
+});
 
+// PVP Button 
 document.querySelector('.pvp').addEventListener('click', (e)=>{
     document.querySelector('.home').classList.remove('hidden');
     document.querySelector('.landing').classList.add('hidden');
+    document.querySelector('.player-x').value = 'Player One';
+    document.querySelector('.player-o').value = 'Player Two';
 });

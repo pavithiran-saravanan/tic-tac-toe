@@ -266,9 +266,8 @@ display: flex;
 
 .home{
     display: grid;
-    place-content: center;
-    gap: 20px;
-    width: clamp(330px, 60%, 700px);
+    row-gap: 20px;
+    width: clamp(330px, 40%, 500px);
     margin: auto;
 }
 
@@ -370,7 +369,7 @@ display: flex;
 
 
 .mode-container{
-    width: clamp(300px, 50%, 450px);
+    width: clamp(330px, 60%, 400px);
     margin: auto;
     display: grid;
     gap: 20px;
@@ -411,4 +410,12 @@ display: flex;
 
 .btn-back{
     gap: 0px;
+}
+
+.player{
+    width: 1fr;
+}
+
+.player-name{
+    padding-right: 48px;
 }
