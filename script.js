@@ -66,6 +66,7 @@ const gameboard = function(){
         cells.forEach((cell)=>{
             if(cell.getAttribute('data-row') == row){
                 cell.style.border = `3px solid var(--bg-${marker.toLowerCase()}-light)`;
+                cell.style.boxSizing = 'border-box';
             };
         });
     };

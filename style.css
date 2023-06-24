@@ -83,16 +83,20 @@ header{
     color: var(--title);
 }
 
+.game-container{
+    padding: 0px 10px;
+}
+
 .gameboard{
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: clamp(300px, 50vw, 420px);
-    width: clamp(300px, 50vw, 420px);
+    width: clamp(280px, 50vw, 420px);
+    height: clamp(280px, 50vw, 420px);
     border-radius: 12px;
     overflow: hidden;
-    padding: 10px;
+    padding: 6px;
     gap: 6px;
     background-color: var(--bg-board);
     user-select: none;
@@ -101,13 +105,26 @@ header{
 .cell{
     background-color: var(--bg-cell);
     border-radius: 8px;
-    font-size: 3.7em;
+    font-size: 65px;
     font-weight: 800;
     display: grid;
     place-content: center;
     color: var(--marker);
     position: relative;
+    box-sizing: border-box;
 }
+
+@media only screen and (max-width: 800px) {
+    .cell {
+        font-size: 54px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .cell {
+        font-size: 45px;
+    }
+  }
 
 .cell[mark='X']{
     background-color: var(--bg-x);
@@ -161,7 +178,6 @@ display: flex;
 }
 
 .turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover::after{
-    z-index: 10;
     content: 'O';
     color: rgba(0, 0, 0, 0.151);
 }
@@ -173,7 +189,6 @@ display: flex;
 }
 
 .turn-indicator:has(.turn-main[turn='X']) ~ .gameboard > .cell[mark='']:hover::after{
-    z-index: 10;
     content: 'X';
     color: rgba(0, 0, 0, 0.219);
 }
