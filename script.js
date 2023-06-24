@@ -46,40 +46,94 @@ const gameboard = function(){
     const displayResult = (isWon)=>{
         if(!isWon){
             document.querySelector('.turn').textContent = 'Tie Game';
-            document.querySelector('.turn-main').id = 'announcement';
             document.querySelector('.symbol').textContent = '';
             document.querySelector('.turn-main').style.gap = '0px';
         }
-        
-        // document.querySelector('.btn-restart').classList.add('highlight-restart');
     }
     const announceWinner = function(player){
-        // document.querySelector('.result').textContent = `-- ${player.name} Won --`;
-
         document.querySelector('.turn').textContent = ` ${player.name} Won`;
-        document.querySelector('.gameboard').style['pointer-events'] = 'none';
-        document.querySelector('.turn-main').setAttribute('turn', player.marker);
         document.querySelector('.symbol').textContent = player.marker;
+        document.querySelector('.gameboard').style['pointer-events'] = 'none';
 
-        const id = `announcement-${player.marker.toLowerCase()}`;
-        document.querySelector('.turn-main').id = id;
+        const turnMain = document.querySelector('.turn-main');
+        turnMain.setAttribute('turn', player.marker);
+        turnMain.id = `announcement-${player.marker.toLowerCase()}`;
         displayResult(true);
     }
 
+    const highlightRow = (row, marker) => {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell)=>{
+            if(cell.getAttribute('data-row') == row){
+                cell.style.border = `3px solid var(--bg-${marker.toLowerCase()}-light)`;
+            };
+        });
+    };
+
+    const highlightColumn = (col, marker) => {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell)=>{
+            if(cell.getAttribute('data-col') == col){
+                cell.style.border = `3px solid var(--bg-${marker.toLowerCase()}-light)`;
+            };
+        });
+    };
+
+    const highlightDiagonal = (dia, marker) => {
+        const cells = document.querySelectorAll('.cell');
+        if(dia == 0){
+            cells.forEach(cell => {
+                if(cell.getAttribute('data-row') == cell.getAttribute('data-col')){
+                    cell.style.border = `3px solid var(--bg-${marker.toLowerCase()}-light)`;
+                }
+            });
+        }
+        else{
+            cells.forEach(cell => {
+                if(cell.getAttribute('data-row') == 2 - cell.getAttribute('data-col')){
+                    cell.style.border = `3px solid var(--bg-${marker.toLowerCase()}-light)`;
+                }
+            });
+        }
+    };
+
     const is_three_in_a_row = function(marker){
         // Check row wise victory
-        if(board[0][0] == marker && board[0][1] == marker && board[0][2] == marker) return true;
-        if(board[1][0] == marker && board[1][1] == marker && board[1][2] == marker) return true;
-        if(board[2][0] == marker && board[2][1] == marker && board[2][2] == marker) return true;
+        if(board[0][0] == marker && board[0][1] == marker && board[0][2] == marker){
+            highlightRow(0, marker);
+            return true;
+        }
+        if(board[1][0] == marker && board[1][1] == marker && board[1][2] == marker){
+            highlightRow(1, marker);
+            return true;
+        }
+        if(board[2][0] == marker && board[2][1] == marker && board[2][2] == marker){
+            highlightRow(2, marker);
+            return true;
+        }
 
         // Check column wise victory
-        if(board[0][0] == marker && board[1][0] == marker && board[2][0] == marker) return true;
-        if(board[0][1] == marker && board[1][1] == marker && board[2][1] == marker) return true;
-        if(board[0][2] == marker && board[1][2] == marker && board[2][2] == marker) return true;
+        if(board[0][0] == marker && board[1][0] == marker && board[2][0] == marker){
+            highlightColumn(0, marker);
+            return true;
+        }
+        if(board[0][1] == marker && board[1][1] == marker && board[2][1] == marker) {
+            highlightColumn(1, marker);
+            return true;
+        }
+        if(board[0][2] == marker && board[1][2] == marker && board[2][2] == marker) {
+            highlightColumn(2, marker);
+            return true;
+        }
 
         // Check diagonal victory
-        if(board[0][0] == marker && board[1][1] == marker && board[2][2] == marker) return true;
-        if(board[2][0] == marker && board[1][1] == marker && board[0][2] == marker) return true;
+        if(board[0][0] == marker && board[1][1] == marker && board[2][2] == marker){
+            highlightDiagonal(0, marker);
+            return true;
+        }
+        if(board[2][0] == marker && board[1][1] == marker && board[0][2] == marker){
+            highlightDiagonal(1, marker);
+        }
         
         return false;
     }
