@@ -109,6 +109,9 @@ header{
     place-content: center;
     color: var(--marker);
     position: relative;
+
+    /* text-shadow: 0px 0px 2px rgba(23, 6, 63, 0.445); */
+
 }
 
 .cell[mark='X']{
@@ -161,14 +164,26 @@ display: flex;
 
 .turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover{
     background-color: var(--bg-o);
-    transition: all 0.2s;
     box-shadow: inset 1px 1px 8px;
+    opacity: 70%;
+}
+
+.turn-indicator:has(.turn-main[turn='O']) ~ .gameboard > .cell[mark='']:hover::after{
+    z-index: 10;
+    content: 'O';
+    color: rgba(0, 0, 0, 0.151);
 }
 
 .turn-indicator:has(.turn-main[turn='X']) ~ .gameboard > .cell[mark='']:hover{
     background-color: var(--bg-x);
-    transition: all 0.2s;
     box-shadow: inset 1px 1px 8px;
+    opacity: 70%;
+}
+
+.turn-indicator:has(.turn-main[turn='X']) ~ .gameboard > .cell[mark='']:hover::after{
+    z-index: 10;
+    content: 'X';
+    color: rgba(0, 0, 0, 0.219);
 }
 
 .btn-container{
@@ -256,18 +271,6 @@ display: flex;
     margin: auto;
     padding-top: 20px;
 }
-
-/* .result{
-    font-size: 30px;
-    color: rgb(201, 177, 255);
-    font-weight: 600;
-    text-align: center;
-    text-shadow: 1px 1px 10px;
-
-    text-shadow: 1px 1px 10px rgb(108, 62, 192);
-    color: rgb(195, 162, 255);
-}
- */
 
 .home{
     display: grid;
