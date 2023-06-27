@@ -36,9 +36,6 @@ const gameboard = function(){
     const setMarker = function(row, col, marker){
         board[row][col] = marker;
     };
-    const print = function(){
-        console.log(board);
-    };
     const isOver = function(){
         if(_markerCount < 9) return false;
         return true;
@@ -134,13 +131,13 @@ const gameboard = function(){
         }
         if(board[2][0] == marker && board[1][1] == marker && board[0][2] == marker){
             highlightDiagonal(1, marker);
+            return true;
         }
         
         return false;
     }
     
     const reset = function(){
-        console.log(board);
         _currPlayer = 0;
         _markerCount = 0;
         board = [['', '', ''],
@@ -203,14 +200,11 @@ const gameboard = function(){
         });
         addClickEventListener();
     }
-    return{setMarker, print, render, reset};
+    return{setMarker, render, reset};
 }();
 
 // Write a factory function that returns a player object
 const createPlayer = function(name, marker){
-    const print = function(){
-        console.log({name, marker});
-    };
     return{name, marker, print};
 };
 // let players = [createPlayer("player1", "❤️"), createPlayer("player2", '💚')];
